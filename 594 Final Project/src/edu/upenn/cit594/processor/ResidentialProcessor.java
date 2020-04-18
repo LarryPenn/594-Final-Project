@@ -1,8 +1,8 @@
 package edu.upenn.cit594.processor;
 
-public class ResidentialMarket {
+public class ResidentialProcessor {
 
-	public ResidentialMarket() {
+	public ResidentialProcessor() {
 		// TODO Auto-generated constructor stub
 	}
 	

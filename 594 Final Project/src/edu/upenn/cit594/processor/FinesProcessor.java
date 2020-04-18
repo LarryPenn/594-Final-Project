@@ -1,8 +1,8 @@
 package edu.upenn.cit594.processor;
 
-public class Fines {
+public class FinesProcessor {
 
-	public Fines() {
+	public FinesProcessor() {
 		// TODO Auto-generated constructor stub
 	}
 	

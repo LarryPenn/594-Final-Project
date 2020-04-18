@@ -1,10 +1,10 @@
 package edu.upenn.cit594.processor;
 
-public class Population {
+public class PopulationProcessor {
 
 	
 	
-	public Population() {
+	public PopulationProcessor() {
 		// TODO Auto-generated constructor stub
 	}
 	
