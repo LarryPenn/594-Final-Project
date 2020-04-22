@@ -1,5 +1,5 @@
 package edu.upenn.cit594.datamanagement;
 
-public class csvPropertiesParser {
+public interface ParkingReader {
 
 }

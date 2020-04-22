@@ -1,5 +1,5 @@
 package edu.upenn.cit594.processor;
 
-public class PopulationProcessor {
+public class ParkingProcessor {
 
 }
