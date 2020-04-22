@@ -1,5 +1,8 @@
 package edu.upenn.cit594.datamanagement;
 
-public interface ParkingReader {
+import edu.upenn.cit594.data.Parking;
 
+public interface ParkingReader{
+	
+		public Parking readParkingData();
 }
