@@ -22,9 +22,11 @@ public class CSVParkingReader extends Reader implements ParkingReader  {
 		try { 
 			br = new BufferedReader(new InputStreamReader(new FileInputStream(new File(filename))));
 			line = br.readLine();
+			
 			while (line != null) {
 				String[] splitLine = line.split(",");
 				if (splitLine.length == 7) {
+					System.out.println(line);
 					String potentialZipcode = splitLine[6];
 					String potentialFine = splitLine[1];
 					if (zipcodeCheck(potentialZipcode) && valueCheck(potentialFine)) {
@@ -32,8 +34,9 @@ public class CSVParkingReader extends Reader implements ParkingReader  {
 
 								}
 							}
-			}
+		
 				line = br.readLine();
+			}
 			br.close();
 		}
 		catch (Exception e) {

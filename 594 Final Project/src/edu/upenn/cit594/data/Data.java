@@ -30,8 +30,8 @@ public class Data {
 	//testing methods
 	public void printCurrentData() {
 		for (Map.Entry<Integer, Integer> ele : data.entrySet()) {
-			System.out.println(ele.getKey());
-			System.out.println(ele.getValue());
+			System.out.println("The zipcode is: " +ele.getKey().toString());
+			System.out.println("The value is: "+ele.getValue().toString());
 		}
 	}
 }

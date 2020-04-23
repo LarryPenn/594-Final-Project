@@ -39,4 +39,24 @@ public class Reader {
 		Integer value = Integer.parseInt(val.replaceAll(",",  ""));
 		return value;
 	}
+	
+	public boolean propertiesValueCheck(String val) {
+		if (val.length() > 0) {
+			try {
+				Double.parseDouble(val.replaceAll(",",  ""));
+				return true;
+			} 
+			catch (NumberFormatException nfe) {
+				return false;
+			}
+			} else {
+				return false;
+			}
+		}
+
+	public Double getValueAsDouble(String val) {
+		Double result = Double.parseDouble(val.replaceAll(",",  ""));
+		return result;
+	}
+	
 }

@@ -14,7 +14,7 @@ import edu.upenn.cit594.data.Parking;
 public class JSONParkingReader extends Reader implements ParkingReader{
 	String filename;
 	
-	JSONParkingReader(String fn) {
+	public JSONParkingReader(String fn) {
 		this.filename = fn;
 	}
 
