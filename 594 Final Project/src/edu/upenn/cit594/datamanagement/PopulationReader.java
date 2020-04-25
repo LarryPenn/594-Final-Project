@@ -1,13 +1,10 @@
 package edu.upenn.cit594.datamanagement;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-
-import edu.upenn.cit594.data.Population;
 
 public interface PopulationReader {
 	
-	public HashMap<Integer, Integer> read();
+	public HashMap<Integer, Integer> readPopulation();
 		
 	}
 

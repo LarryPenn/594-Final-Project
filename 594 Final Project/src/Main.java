@@ -1,5 +1,3 @@
-import edu.upenn.cit594.data.PopulationData;
-
 public class Main {
 
 	

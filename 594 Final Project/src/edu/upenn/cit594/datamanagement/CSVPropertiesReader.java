@@ -33,7 +33,7 @@ public class CSVPropertiesReader implements PropertiesReader {
 		try {
 
 			br = new BufferedReader(new FileReader(fileName));
-			Logger l = Logger.getInstance(); l.log(fileName); //Logging
+			//Logger l = Logger.getInstance(); l.log(fileName); //Logging
 			
 			//if(br.readLine()==null)
 			//{
@@ -77,15 +77,15 @@ public class CSVPropertiesReader implements PropertiesReader {
 					continue; // ignore the whole row for: format is not correct.
 				
 				marketValue=Double.parseDouble(propertyString[a]); 
-				property.setMarketValue(marketValue);
+				//property.setMarketValue(marketValue);
 				
 				
 				totalLivableArea=Double.parseDouble(propertyString[b]);
-				property.setTotalLivableArea(totalLivableArea);;
+				//property.setTotalLivableArea(totalLivableArea);;
 				
 				
 				zipCode=Integer.parseInt(propertyString[c].substring(0,5)); //only use first 5 digits as zip-code
-				property.setZipCode(zipCode);
+				//property.setZipCode(zipCode);
 				properties.add(property);
 
 				}

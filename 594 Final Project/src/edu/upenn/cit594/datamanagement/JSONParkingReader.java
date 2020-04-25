@@ -27,7 +27,7 @@ public class JSONParkingReader implements ParkingReader{
 		JSONArray parkings = new JSONArray();
 		try {
 			parkings = (JSONArray)parser.parse(new FileReader(fileName));
-			Logger l = Logger.getInstance(); l.log(fileName); //Logging
+			//Logger l = Logger.getInstance(); l.log(fileName); //Logging
 		} catch (IOException | ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -70,9 +70,9 @@ public class JSONParkingReader implements ParkingReader{
 			//System.out.println(zipCode);
 			//System.out.println(tweet.get("location"));
 
-			p.setFine(fine);		
-			p.setZipCode(zipCode);		
-			p.setState(state);
+			//p.setFine(fine);
+			//p.setZipCode(zipCode);
+			//p.setState(state);
 			//n++;
 			parking.add(p);
 
@@ -82,13 +82,11 @@ public class JSONParkingReader implements ParkingReader{
 
 	}
 
-
-	/*
 	public static void main(String[] args) {
 
 		JSONParkingReader test = new JSONParkingReader("parking.json");
 		test.read();
 
 	}
-*/
+
 }
