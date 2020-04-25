@@ -13,7 +13,7 @@ public class TXTPopulationReader implements PopulationReader{
 	}
 	
 	public HashMap<Integer, Integer> readPopulation(){
-		//Hashmap for storing the zipcode and population number
+		/// Hashmap for storing the zipcode and population number
 		HashMap<Integer,Integer> population = new HashMap<>();
 		String line;
 		String txtSplitBy =" "; //Split the text by space
