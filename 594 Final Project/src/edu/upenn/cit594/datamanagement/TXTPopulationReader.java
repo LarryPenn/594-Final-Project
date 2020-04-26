@@ -6,7 +6,7 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import edu.upenn.cit594.data.Population;
 
-public class TXTPopulationReader extends Reader{
+public class TXTPopulationReader extends Reader implements PopulationReader{
 	protected String filename;
 	
 	public TXTPopulationReader(String name) {

@@ -31,7 +31,8 @@ public class JSONParkingReader extends Reader implements ParkingReader{
 				JSONObject line = (JSONObject) iter.next();
 				String potentialZipcode = line.get("zip_code").toString();
 				String potentialFine = line.get("fine").toString();
-				if (zipcodeCheck(potentialZipcode) && valueCheck(potentialFine)) {
+				String state = line.get("state").toString();
+				if (zipcodeCheck(potentialZipcode) && valueCheck(potentialFine) && state.equals("PA")) {
 					parkingData.updateData(getZipcode(potentialZipcode), getValue(potentialFine));
 				}
 			}

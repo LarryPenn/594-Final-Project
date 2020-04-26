@@ -29,7 +29,8 @@ public class CSVParkingReader extends Reader implements ParkingReader  {
 					System.out.println(line);
 					String potentialZipcode = splitLine[6];
 					String potentialFine = splitLine[1];
-					if (zipcodeCheck(potentialZipcode) && valueCheck(potentialFine)) {
+					String state = splitLine[4];
+					if (zipcodeCheck(potentialZipcode) && valueCheck(potentialFine) && state.equals("PA")) {
 						parkingData.updateData(getZipcode(potentialZipcode), getValue(potentialFine));
 
 								}

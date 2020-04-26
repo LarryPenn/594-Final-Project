@@ -9,7 +9,7 @@ import java.util.Arrays;
 
 import edu.upenn.cit594.data.Properties;
 
-public class CSVPropertiesReader extends Reader{
+public class CSVPropertiesReader extends Reader implements PropertiesReader{
 	protected String filename;
 	
 	public CSVPropertiesReader(String name) {
