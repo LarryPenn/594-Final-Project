@@ -1,55 +1,42 @@
 package edu.upenn.cit594.datamanagement;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import edu.upenn.cit594.data.Population;
 
-import java.io.*;
-import java.util.*;
-
 public class TXTPopulationReader implements PopulationReader{
+	protected String filename;
 
-	String fileName;
-	public TXTPopulationReader(String inputFile){
-		fileName  = inputFile;
+	public TXTPopulationReader(String name) {
+		filename = name;
 	}
-	
-	public HashMap<Integer, Integer> readPopulation(){
-		/// Hashmap for storing the zipcode and population number
-		HashMap<Integer,Integer> population = new HashMap<>();
-		String line;
-		String txtSplitBy =" "; //Split the text by space
-		
-			BufferedReader in = null;
-				try {
-					in = new  BufferedReader(new FileReader(fileName));
-					//Logger l = Logger.getInstance(); l.log(fileName); //Logging
-				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				try {
-					while ((line=in.readLine())!= null) {
-						String[] populationString=line.split(txtSplitBy);
-						if(populationString.length<2)
-							continue;
-						population.put(Integer.parseInt(populationString[0]), Integer.parseInt(populationString[1]));
+
+	public Population readPopulationData() {
+
+		Population populationData = new Population();
+		BufferedReader br = null;
+		String line = null;
+		try {
+			br = new BufferedReader(new InputStreamReader(new FileInputStream(new File(filename))));
+			line = br.readLine();
+			while (line != null) {
+				String[] lineSplit = line.split("\\s+");
+				if (lineSplit.length == 2) {
+					if (ReaderUtils.zipcodeCheck(lineSplit[0]) && ReaderUtils.valueCheck(lineSplit[1])) {
+						populationData.updateData(ReaderUtils.getZipcode(lineSplit[0]), ReaderUtils.getValue(lineSplit[1]));
 					}
-				} catch (NumberFormatException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
 				}
-		
-	return population;
+				line = br.readLine();
+			}
+
+			br.close();
+		}
+		catch (Exception e) {
+			throw new IllegalStateException(e);
+		}
+		return populationData;
+
 	}
-
-	//public static void main(String[] args) {
-
-		//TXTPopulationReader test3 = new TXTPopulationReader("/Users/sid.sathi/594-Final-Project/594 Final Project/population.txt");
-		//HashMap<Integer,Integer> population_hashmap = test3.readPopulation();
-		//Population population = new Population(population_hashmap);
-		//System.out.println(population.getZipCodes());
-
-	//}
 }

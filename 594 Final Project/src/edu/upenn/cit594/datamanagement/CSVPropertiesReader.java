@@ -1,126 +1,66 @@
 package edu.upenn.cit594.datamanagement;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 
-import edu.upenn.cit594.data.Parking;
 import edu.upenn.cit594.data.Properties;
-import edu.upenn.cit594.logging.Logger;
 
-public class CSVPropertiesReader implements PropertiesReader {
-	String fileName;
-	Properties p = new Properties(); // each row of the Parking JSON File
-	ArrayList<Properties> properties = new ArrayList<>();
-	
-	public CSVPropertiesReader(String myFile) {
-		fileName = myFile;
+public class CSVPropertiesReader implements PropertiesReader{
+	protected String filename;
+	public CSVPropertiesReader(String name) {
+		filename = name;
 	}
-	
-	public ArrayList<Properties> read() {
-		ArrayList<Properties> properties = new ArrayList<>();
+
+	public Properties readPropertiesData() {
+		Properties propertiesData = new Properties();
+
 		BufferedReader br = null;
-		
-		String firstRow;
-		String line = "";
-		String csvSplitBy = ",";
-		int a=0; // column number for "market_value"
-		int b=0; // column number for "total_livable_area"
-		int c=0; // column number for "zip_code"
-
+		String line = null;
 		try {
+			br = new BufferedReader(new InputStreamReader(new FileInputStream(new File(filename))));
+			line = br.readLine();
 
-			br = new BufferedReader(new FileReader(fileName));
-			//Logger l = Logger.getInstance(); l.log(fileName); //Logging
-			
-			//if(br.readLine()==null)
-			//{
-			//	System.out.print("the file is empty");
-			//	return null;
-			//}
-				
-			firstRow=br.readLine();
-			String[] field = firstRow.split(csvSplitBy,-1);
-			int length = field.length;
-			
-			while(!field[a].equals("market_value")&& a<length) {
-				a++;
-			}
-			
-			while(!field[b].equals("total_livable_area")&& b<length) {
-				b++;
-			}
-			
-			while(!field[c].equals("zip_code")&&c<length) {
-				c++;
-			}
-			
-			
-			while ((line = br.readLine()) != null) {
-				Properties property= new Properties();
-				double marketValue=0;
-				double totalLivableArea=0;
-				int zipCode=0;
-				
-				//Use comma as a seperatpr
-				String[] propertyString = line.split(csvSplitBy,-1);
-				
-				//if(propertyString.length<length) //check if the row has 77 columns in case some data is missing
-				//	continue;
-				
-				if(propertyString[a].isEmpty()||propertyString[b].isEmpty()||propertyString[c].length()<5)
-					continue; // ignore the whole row for: data is missing.
-				
-				if(!propertyString[c].substring(0,5).matches("[0-9]+"))
-					continue; // ignore the whole row for: format is not correct.
-				
-				marketValue=Double.parseDouble(propertyString[a]); 
-				//property.setMarketValue(marketValue);
-				
-				
-				totalLivableArea=Double.parseDouble(propertyString[b]);
-				//property.setTotalLivableArea(totalLivableArea);;
-				
-				
-				zipCode=Integer.parseInt(propertyString[c].substring(0,5)); //only use first 5 digits as zip-code
-				//property.setZipCode(zipCode);
-				properties.add(property);
+			String[] splitLine = line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
+
+			ArrayList<String> lineAsArray = new ArrayList<String>(Arrays.asList(splitLine));
+
+			Integer zipCodePosition = lineAsArray.indexOf("zip_code");
+			Integer marketValuePosition = lineAsArray.indexOf("market_value");
+			Integer totalLiveableAreaPosition = lineAsArray.indexOf("total_livable_area");
+
+			Integer size = splitLine.length;
+			while (line != null) {
+				//System.out.println(line);
+				splitLine = line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
+				if (splitLine.length == size) { //this should be the number of categories?
+					String potentialZipcode = splitLine[zipCodePosition];
+
+					String potentialMarketValue = splitLine[marketValuePosition];
+
+					String totalLiveableArea = splitLine[totalLiveableAreaPosition];
+
+					if (ReaderUtils.zipcodeCheck(potentialZipcode) && ReaderUtils.propertiesValueCheck(potentialMarketValue) && ReaderUtils.propertiesValueCheck(totalLiveableArea)) {
+						propertiesData.addPropertyData(ReaderUtils.getZipcode(potentialZipcode), ReaderUtils.getValueAsDouble(totalLiveableArea), ReaderUtils.getValueAsDouble(potentialMarketValue));
+					}
 
 				}
-			
 
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			if (br != null) {
-				try {
-					br.close();
-
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-
+				line = br.readLine();
 			}
+
+			br.close();
 		}
-		return (properties);
+		catch (Exception e) {
+			throw new IllegalStateException(e);
+		}
 
-
+		return propertiesData;
 	}
-/*
-	public static void main(String[] args) {
-
-		CSVPropertiesReader test = new CSVPropertiesReader("properties.csv");
-		test.read();
-	
-			//System.out.println(test2.get(3)); //Printing out all the dates
 
 
-		}
 
-*/
-	
 }

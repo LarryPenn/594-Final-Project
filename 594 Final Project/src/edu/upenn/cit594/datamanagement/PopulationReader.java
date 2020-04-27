@@ -1,12 +1,8 @@
 package edu.upenn.cit594.datamanagement;
 
-import java.util.HashMap;
+import edu.upenn.cit594.data.Population;
 
 public interface PopulationReader {
-	
-	public HashMap<Integer, Integer> readPopulation();
-		
-	}
 
-	
-
+	public Population readPopulationData();
+}
