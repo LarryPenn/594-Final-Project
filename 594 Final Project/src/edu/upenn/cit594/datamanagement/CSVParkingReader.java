@@ -6,7 +6,10 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 
 import edu.upenn.cit594.data.Parking;
-
+/*
+ * reads data from a parking csv and pulls
+ * the zipcode
+ */
 public class CSVParkingReader extends Reader implements ParkingReader  {
 	protected String filename;
 	
@@ -26,7 +29,7 @@ public class CSVParkingReader extends Reader implements ParkingReader  {
 			while (line != null) {
 				String[] splitLine = line.split(",");
 				if (splitLine.length == 7) {
-					System.out.println(line);
+					//System.out.println(line);
 					String potentialZipcode = splitLine[6];
 					String potentialFine = splitLine[1];
 					String state = splitLine[4];

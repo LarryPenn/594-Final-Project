@@ -1,6 +1,10 @@
 package edu.upenn.cit594.datamanagement;
-
+/*
+ * class is responsible for methods used across readers
+ */
 public class Reader {
+	
+	// will see if a string zipcode is a correct zip code input
 	public boolean zipcodeCheck(String potentialZipcode) {
 		if (potentialZipcode.length() >= 5) {
 			try {
@@ -16,11 +20,13 @@ public class Reader {
 		
 	}
 	
+	// returns a properly formatted integer zipcode from a string
 	public Integer getZipcode(String potentialZipcode) {
 		Integer zipcode = Integer.parseInt(potentialZipcode.substring(0,5));
 		return zipcode;
 	}
 	
+	// checks if an expected integer value parses correctly
 	public boolean valueCheck(String val) {
 		if (val.length() > 0) {
 		try {
@@ -35,11 +41,13 @@ public class Reader {
 		}
 	}
 	
+	// converts some potential value to an integer
 	public Integer getValue(String val) {
 		Integer value = Integer.parseInt(val.replaceAll(",",  ""));
 		return value;
 	}
 	
+	// checks if an expected double value parses correctly
 	public boolean propertiesValueCheck(String val) {
 		if (val.length() > 0) {
 			try {
@@ -53,7 +61,7 @@ public class Reader {
 				return false;
 			}
 		}
-
+	// converts some potential value to a double
 	public Double getValueAsDouble(String val) {
 		Double result = Double.parseDouble(val.replaceAll(",",  ""));
 		return result;

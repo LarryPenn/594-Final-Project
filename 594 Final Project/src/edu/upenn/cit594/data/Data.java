@@ -12,14 +12,15 @@ public class Data {
 	public Data() {
 		this.data = new HashMap<Integer, Integer>();
 	}
-	
+	//confirms if the hashmap contains the zipcode as a key
 	public boolean containsZipcode(Integer zipcode) {
 		return data.containsKey(zipcode);
 	}
-	
+	//returns the value associated with the zipcode key
 	public Integer getValueByZipcode(Integer zipcode) {
 		return data.get(zipcode);
 	}
+	// updates the asssocaited data, adding new data to its mapping if the key exists
 	public void updateData(Integer zipcode, Integer updateData) {
 		if (containsZipcode(zipcode)) {
 			updateData = getValueByZipcode(zipcode) + updateData;

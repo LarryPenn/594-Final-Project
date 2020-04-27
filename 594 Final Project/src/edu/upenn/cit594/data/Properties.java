@@ -3,7 +3,11 @@ package edu.upenn.cit594.data;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
-
+/*
+ * properties maps an integer zipcode to an arraylist
+ * of relevant data including total liveable area,
+ * total market value, and the number of residencies
+ */
 public class Properties {
 	private HashMap<Integer, ArrayList<Double>> propertyData;
 	// ArrayList.get(0) = totalLiveableArea
@@ -29,6 +33,8 @@ public class Properties {
 		return propertyData.get(zipcode).get(2);
 	}
 	
+	//adds an integer an associated liveable area and market value to the hashmap
+	//and increases the number of residencies
 	public void addPropertyData(Integer zipcode, Double liveableArea, Double marketValue) {
 		Double numberOFResidencies = 0.0;
 		if (containsZipcode(zipcode) == false) {
@@ -44,6 +50,8 @@ public class Properties {
 		currentPropertyData.add(2, numberOFResidencies);
 		propertyData.put(zipcode, currentPropertyData);
 	}
+	
+	//used for testing
 	public void printData() {
 		for (Entry<Integer, ArrayList<Double>> test : propertyData.entrySet()) {
 			System.out.println("The key is: " + test.getKey().toString());

@@ -10,7 +10,10 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import edu.upenn.cit594.data.Parking;
-
+/*
+ * reads a JSON file to find total fines
+ * by zipcode
+ */
 public class JSONParkingReader extends Reader implements ParkingReader{
 	String filename;
 	
