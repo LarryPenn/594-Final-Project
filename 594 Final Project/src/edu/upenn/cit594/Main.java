@@ -19,7 +19,7 @@ public class Main {
         //String parkingFile = "/Users/sid.sathi/Downloads/CIT594GroupProject-master/parking.json";
         //String propertyFile = "/Users/sid.sathi/594-Final-Project/data/properties_sample2.csv";
         //String populationFile = "/Users/sid.sathi/594-Final-Project/data/population.txt";
-        //String logFile = "/Users/sid.sathi/594-Final-Project/data/log.txt";
+        ///String logFile = "/Users/sid.sathi/594-Final-Project/data/log.txt";
 
         if (args.length != 5) {
             System.out.println("invalid args");
