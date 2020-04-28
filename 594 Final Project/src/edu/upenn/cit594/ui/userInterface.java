@@ -29,30 +29,35 @@ public class userInterface {
     TXTPopulationReader txtPopulationReader;
     CSVParkingReader csvparkingReader;
     CSVPropertiesReader csvPropertiesReader;
-
+    JSONParkingReader jsonParkingReader;
     PopulationProcessor popProcessor;
     ParkingProcessor parkingProcessor;
+    PropertiesProcessor propertiesProcessor;
 
 
     public userInterface(TXTPopulationReader txtPopulationReader, CSVParkingReader csvparkingReader, CSVPropertiesReader csvPropertiesReader,
-                         PopulationProcessor popProcessor, ParkingProcessor parkingProcessor) {
+                         PopulationProcessor popProcessor, ParkingProcessor parkingProcessor, PropertiesProcessor propertiesProcessor) {
         this.txtPopulationReader = txtPopulationReader;
         this.csvparkingReader = csvparkingReader;
         this.csvPropertiesReader = csvPropertiesReader;
         this.popProcessor = popProcessor;
         this.parkingProcessor = parkingProcessor;
+        this.propertiesProcessor = propertiesProcessor;
+    }
+
+    public userInterface(TXTPopulationReader txtPopulationReader, JSONParkingReader jsonParkingReader, CSVPropertiesReader csvPropertiesReader,
+                         PopulationProcessor popProcessor, ParkingProcessor parkingProcessor, PropertiesProcessor propertiesProcessor) {
+        this.txtPopulationReader = txtPopulationReader;
+        this.jsonParkingReader = jsonParkingReader;
+        this.csvPropertiesReader = csvPropertiesReader;
+        this.popProcessor = popProcessor;
+        this.parkingProcessor = parkingProcessor;
+        this.propertiesProcessor = propertiesProcessor;
     }
 
     public void askUserForStep() {
         int step;
         int zipCode;
-        int totalPopulation=0;
-
-        //for memorization purpose: ///WILL CHANGE BASED ON LARRYS CODE
-        //HashMap<Integer, Double> totalFinesPerCapita=new HashMap<>();
-        //HashMap<Integer, Double> aveResidentialMV = new HashMap<>() ;
-        //HashMap<Integer, Double> aveResidentialTLA = new HashMap<>() ;
-        //HashMap<Integer, Double> mktValuePerCapita = new HashMap<>() ;
 
         Scanner myObj = new Scanner(System.in);  // Create a Scanner object
 
@@ -68,20 +73,16 @@ public class userInterface {
                     System.exit(0);
                 }
                 else if (step == 1) {
-
-                    PopulationProcessor populationProcessor = new PopulationProcessor(txtPopulationReader);
-                    System.out.println(populationProcessor.getTotalPopulation());
+                    System.out.println(popProcessor.getTotalPopulation());
 
                 }
                 else if (step == 2) {
                     // Total fines per capita
-                    ParkingProcessor parkingProcessor = new ParkingProcessor(popProcessor, csvparkingReader);
                     parkingProcessor.finesPerCapita();
                 }
 
                 else if (step == 3) {
                     //Average residential market value
-                    PropertiesProcessor propertiesProcessor = new PropertiesProcessor(csvPropertiesReader, popProcessor, parkingProcessor);
                     //Read user provided zip code
                     zipCode = askUserForZipCode();
                     propertiesProcessor.averageMarketValue(zipCode);
@@ -89,7 +90,6 @@ public class userInterface {
 
                 else if (step == 4) {
                     //Average Residential Total Livable Area
-                    PropertiesProcessor propertiesProcessor = new PropertiesProcessor(csvPropertiesReader, popProcessor, parkingProcessor);
                     //Read user provided zip code
                     zipCode = askUserForZipCode();
                     propertiesProcessor.averageLiveableArea(zipCode);
@@ -97,12 +97,10 @@ public class userInterface {
                 }
                 else if (step == 5) {
                     //Total Residential Market Value Per Capita
-                    PropertiesProcessor propertiesProcessor = new PropertiesProcessor(csvPropertiesReader, popProcessor, parkingProcessor);
                     zipCode = askUserForZipCode();
                     propertiesProcessor.averageValuePerCapita(zipCode);
                 }
                 else if (step == 6) {
-                    PropertiesProcessor propertiesProcessor = new PropertiesProcessor(csvPropertiesReader, popProcessor, parkingProcessor);
                     propertiesProcessor.additionalAnalysis();
 
                 }

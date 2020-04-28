@@ -8,9 +8,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import edu.upenn.cit594.data.Properties;
-
+/*
+ * reads properties data from csv to find market value and
+ * total liveable area by zipcode
+ *
+ */
 public class CSVPropertiesReader implements PropertiesReader{
 	protected String filename;
+
 	public CSVPropertiesReader(String name) {
 		filename = name;
 	}

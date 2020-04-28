@@ -25,7 +25,7 @@ public class CSVParkingReader implements ParkingReader  {
 			while (line != null) {
 				String[] splitLine = line.split(",");
 				if (splitLine.length == 7) {
-					System.out.println(line);
+					//System.out.println(line);
 					String potentialZipcode = splitLine[6];
 					String potentialFine = splitLine[1];
 					String state = splitLine[4];

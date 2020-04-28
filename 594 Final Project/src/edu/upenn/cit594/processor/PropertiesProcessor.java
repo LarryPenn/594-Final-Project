@@ -89,40 +89,50 @@ public class PropertiesProcessor {
         ArrayList<Integer> MVlist = new ArrayList<Integer>(avgMVperCap.values());
         Collections.sort(MVlist);
 
-        int highest = MVlist.get(MVlist.size()-1);
-        int lowest = MVlist.get(0);
-        int median = MVlist.get(Math.round(MVlist.size()/2));
+        if (MVlist.size() > 0) {
+            int highest = MVlist.get(MVlist.size() - 1);
+            int lowest = MVlist.get(0);
+            int median = MVlist.get(Math.round(MVlist.size() / 2));
 
-        int zipcodeHi = 0;
-        int zipcodeLo = 0;
-        int zipcodeMedian = 0;
+            int zipcodeHi = 0;
+            int zipcodeLo = 0;
+            int zipcodeMedian = 0;
 
-        Iterator<Entry<Integer, Integer>> iter = avgMVperCap.entrySet().iterator();
-        while (iter.hasNext()) {
-            Map.Entry<Integer, Integer> pair = (Map.Entry<Integer, Integer>) iter.next();
-            if (pair.getValue() == highest) {
-                zipcodeHi = pair.getKey();
+            Iterator<Entry<Integer, Integer>> iter = avgMVperCap.entrySet().iterator();
+            while (iter.hasNext()) {
+                Map.Entry<Integer, Integer> pair = (Map.Entry<Integer, Integer>) iter.next();
+                if (pair.getValue() == highest) {
+                    zipcodeHi = pair.getKey();
+                }
+                if (pair.getValue() == lowest) {
+                    zipcodeLo = pair.getKey();
+                }
+                if (pair.getValue() == median) {
+                    zipcodeMedian = pair.getKey();
+                }
             }
-            if (pair.getValue() == lowest) {
-                zipcodeLo = pair.getKey();
+
+            double hiFine = 0;
+            double loFine = 0;
+            double medianFine = 0;
+            if(parkingData.containsZipcode(zipcodeHi)){
+                hiFine = Math.floor(parkingData.getValueByZipcode(zipcodeHi)/populationData.getValueByZipcode(zipcodeHi)*10000)/10000;
             }
-            if (pair.getValue() == median) {
-                zipcodeMedian = pair.getKey();
+            if(parkingData.containsZipcode(zipcodeLo)){
+                loFine = Math.floor(parkingData.getValueByZipcode(zipcodeLo)/populationData.getValueByZipcode(zipcodeLo)*10000)/10000;
             }
+            if(parkingData.containsZipcode(zipcodeMedian)){
+                medianFine = Math.floor(parkingData.getValueByZipcode(zipcodeMedian)/populationData.getValueByZipcode(zipcodeMedian)*10000)/10000;
+            }
+
+            System.out.println("The zipcode with the highest residential value per capita is " + zipcodeHi);
+            System.out.println("Its residential value per capita is " + avgMVperCap.get(zipcodeHi) + " and its fines per capita is " + hiFine);
+            System.out.println("The zipcode with the lowest residential value per capita is " + zipcodeLo);
+            System.out.println("Its residential value per capita is " + avgMVperCap.get(zipcodeLo) + " and its fines per capita is " + loFine);
+            System.out.println("The zipcode with the median residential value per capita is " + zipcodeMedian);
+            System.out.println("Its residential value per capita is " + avgMVperCap.get(zipcodeMedian) + " and its fines per capita is " + medianFine);
+
         }
-
-        double hiFine = Math.floor(parkingData.getValueByZipcode(zipcodeHi)/populationData.getValueByZipcode(zipcodeHi)*10000)/10000;
-        double loFine = Math.floor(parkingData.getValueByZipcode(zipcodeLo)/populationData.getValueByZipcode(zipcodeLo)*10000)/10000;
-        double medianFine = Math.floor(parkingData.getValueByZipcode(zipcodeMedian)/populationData.getValueByZipcode(zipcodeMedian)*10000)/10000;
-
-        System.out.println("The zipcode with the highest residential value per capita is " + zipcodeHi);
-        System.out.println("Its residential value per capita is " + avgMVperCap.get(zipcodeHi) + " and its fines per capita is " + hiFine);
-        System.out.println("The zipcode with the lowest residential value per capita is " + zipcodeLo);
-        System.out.println("Its residential value per capita is " + avgMVperCap.get(zipcodeLo) + " and its fines per capita is " + loFine);
-        System.out.println("The zipcode with the median residential value per capita is "+ zipcodeMedian);
-        System.out.println("Its residential value per capita is " + avgMVperCap.get(zipcodeMedian) + " and its fines per capita is " + medianFine);
-
     }
-
 
 }

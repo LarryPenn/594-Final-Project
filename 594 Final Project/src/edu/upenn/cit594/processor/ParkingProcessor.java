@@ -33,7 +33,7 @@ public class ParkingProcessor {
         for (Integer key : populationMap.keySet() ) {
 
             if(parkingMap.containsKey(key)) {
-                double finesPerCapita = (double) parkingMap.get(key)/ (double) populationMap.get(key);
+                double finesPerCapita = Math.floor((double) parkingMap.get(key)/ (double) populationMap.get(key)*10000)/10000;
                 tmap.put(key, finesPerCapita);
             }
         }
