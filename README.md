@@ -1,5 +1,7 @@
 # 594-Final-Project
 
+Team: Holly Furnari, Sid Sathi, Guang Yang
+
 1. Additional Feature
 
 For all the zipcodes user has provided in step 5, the additional feature of the Processor analyzes the data and ouputs the zipcode with the highest, lowest, and median residential market value per capita and its corresponding fines per capita. The feature uses all three input data sets, as it contains per capita information for both residential properties and parking fines. 
