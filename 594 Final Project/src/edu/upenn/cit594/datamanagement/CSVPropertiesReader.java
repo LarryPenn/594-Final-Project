@@ -15,11 +15,11 @@ import edu.upenn.cit594.data.Properties;
  */
 public class CSVPropertiesReader implements PropertiesReader{
 	protected String filename;
-
+	
 	public CSVPropertiesReader(String name) {
 		filename = name;
 	}
-
+	
 	public Properties readPropertiesData() {
 		Properties propertiesData = new Properties();
 

@@ -10,37 +10,35 @@ import edu.upenn.cit594.processor.ParkingProcessor;
 import edu.upenn.cit594.processor.PopulationProcessor;
 import edu.upenn.cit594.processor.PropertiesProcessor;
 import edu.upenn.cit594.ui.userInterface;
-
+import edu.upenn.cit594.data.Data;
 public class Main {
 
     public static void main(String[] args){
 
-        String parkingFileFormat = "csv";
-        String parkingFile = "/Users/sid.sathi/594-Final-Project/data/parking.csv";
-        String propertyFile = "/Users/sid.sathi/594-Final-Project/data/properties_sample.csv";
-        String populationFile = "/Users/sid.sathi/594-Final-Project/data/population.txt";
+        //String parkingFileFormat = "json";
+        //String parkingFile = "/Users/sid.sathi/Downloads/CIT594GroupProject-master/parking.json";
+        //String propertyFile = "/Users/sid.sathi/594-Final-Project/data/properties_sample2.csv";
+        //String populationFile = "/Users/sid.sathi/594-Final-Project/data/population.txt";
+        //String logFile = "/Users/sid.sathi/594-Final-Project/data/log.txt";
 
-        //if (args.length != 5) {
-            //System.out.println("invalid args");
-            //System.exit(0);
-        //}
-        //if (!(args[0].equals("csv") || args[0].equals("json"))) {
-            //System.out.println("invalid args");
-            //System.exit(0);
-        //}
+        if (args.length != 5) {
+            System.out.println("invalid args");
+            System.exit(0);
+        }
 
-        //String parkingFileFormat = args[0];
-        //String parkingFile = args[1];
-        //String propertyFile = args[2];
-        //String populationFile = args[3];
-        //String logFile = args[4];
+        if (!(args[0].equals("csv") || args[0].equals("json"))) {
+            System.out.println("invalid args");
+            System.exit(0);
+        }
 
-
-        //String logFile = args[4];
-
+        String parkingFileFormat = args[0];
+        String parkingFile = args[1];
+        String propertyFile = args[2];
+        String populationFile = args[3];
+        String logFile = args[4];
 
 
-        //Logger l = Logger.getInstance(logFile);l.log(args); //Logging
+        Logger l = Logger.getInstance(logFile);l.log("Log is working"); //Logging
 
         //Initialize our reader
         CSVParkingReader csvParkingReader = new CSVParkingReader(parkingFile);
@@ -56,12 +54,15 @@ public class Main {
                 System.out.println("Parking Processor initialized");
                 PropertiesProcessor propertiesProcessor = new PropertiesProcessor(csvPropertiesReader, populationProcessor, parkingProcessor);
                 System.out.println("Properties Processor initialized");
+
                 userInterface ui = new userInterface(txtPopulationReader, csvParkingReader , csvPropertiesReader, populationProcessor, parkingProcessor, propertiesProcessor);
                 ui.askUserForStep();
 
             } else {
                 JSONParkingReader jsonParkingReader= new JSONParkingReader(parkingFile);
+                System.out.println("Loaded JSON Parking Reader");
                 ParkingProcessor parkingProcessor = new ParkingProcessor(populationProcessor, jsonParkingReader);
+                System.out.println("Parking Processor initialized");
                 PropertiesProcessor propertiesProcessor = new PropertiesProcessor(csvPropertiesReader, populationProcessor, parkingProcessor);
                 userInterface ui = new userInterface(txtPopulationReader, jsonParkingReader , csvPropertiesReader, populationProcessor, parkingProcessor, propertiesProcessor);
                 ui.askUserForStep();

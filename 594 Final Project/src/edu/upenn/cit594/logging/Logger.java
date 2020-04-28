@@ -71,6 +71,7 @@ public class Logger {
 	}
 
 
+
 	/*NEED TO ADD, TO ACCESS LOGGER
 	 * Logger newLog = Logger.getInstance();
 	 * newLog.log(); // with info

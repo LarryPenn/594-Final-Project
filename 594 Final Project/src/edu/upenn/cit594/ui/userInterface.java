@@ -120,11 +120,6 @@ public class userInterface {
         Logger l = Logger.getInstance(); l.log(userZipCode); //Logging
         Data data = new Data();
 
-        //Check if the zip code exists within our data
-        if (!data.containsZipcode(Integer.parseInt(userZipCode))) {
-            return 0;
-        }
-
         if(userZipCode.matches("[0-9]+") && userZipCode.length()==5){
             zipCode=Integer.parseInt(userZipCode);
             return zipCode;

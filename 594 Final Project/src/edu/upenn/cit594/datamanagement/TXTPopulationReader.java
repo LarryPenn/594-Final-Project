@@ -5,14 +5,18 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import edu.upenn.cit594.data.Population;
-
+/*
+ * reads population data from a text file to find the total population
+ * per zip code
+ */
 public class TXTPopulationReader implements PopulationReader{
 	protected String filename;
-
+	
 	public TXTPopulationReader(String name) {
 		filename = name;
 	}
-
+	
+	// finds a "population" from the file
 	public Population readPopulationData() {
 
 		Population populationData = new Population();

@@ -6,14 +6,17 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 
 import edu.upenn.cit594.data.Parking;
-
+/*
+ * reads data from a parking csv and pulls
+ * the zipcode
+ */
 public class CSVParkingReader implements ParkingReader  {
 	protected String filename;
-
+	
 	public CSVParkingReader(String name) {
 		filename = name;
 	}
-
+	
 	public Parking readParkingData() {
 		Parking parkingData = new Parking();
 		BufferedReader br = null;

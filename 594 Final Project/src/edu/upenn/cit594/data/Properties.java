@@ -3,12 +3,15 @@ package edu.upenn.cit594.data;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
+/*
+ * properties maps an integer zipcode to an arraylist
+ * of relevant data including total liveable area,
+ * total market value, and the number of residencies
+ */
 
 public class Properties {
 	private HashMap<Integer, ArrayList<Double>> propertyData;
-	// ArrayList.get(0) = totalLiveableArea
-	// ArrayList.get(1) = totalMarketValue;
-	// ArrayList.get(2) = numberOfResidencies
+
 
 	public Properties() {
 		this.propertyData = new HashMap<Integer, ArrayList<Double>>();
