@@ -1,6 +1,6 @@
 # 594-Final-Project
 
-Team: Holly Furnari, Sid Sathi, Guang Yang
+Team 71: Holly Furnari, Sid Sathi, Guang Yang
 
 1. Additional Feature
 
